@@ -24,11 +24,10 @@ type Client struct {
 	listens    *gmap.StrIntMap
 }
 
-func NewClient(name string, addr string) *Client {
+func NewClient(name string, socket Socket) *Client {
 	r := &Client{
 		name:       name,
-		addr:       addr,
-		conn:       nil,
+		conn:       NewConn(socket),
 		counter:    0,
 		genMutex:   gmutex.New(),
 		response:   gmap.NewIntAnyMap(true),
