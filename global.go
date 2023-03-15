@@ -12,3 +12,6 @@ func GetClinet() *Client {
 	}
 	return globalClinet
 }
+
+type Slot struct{}
+type Listen struct{}
