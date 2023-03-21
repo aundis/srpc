@@ -50,6 +50,10 @@ func (c *Client) SetController(controller map[string]ControllerHandle) {
 	}
 }
 
+func (c *Client) AddController(name string, handle ControllerHandle) {
+	c.controller.Set(name, handle)
+}
+
 func (c *Client) SetListens(names []string) {
 	c.listens.Clear()
 	for _, v := range names {
