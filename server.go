@@ -90,8 +90,8 @@ func (s *Server) handleCallContoller(ctx context.Context, sender *Client, msg *M
 
 func (s *Server) handleEmit(ctx context.Context, sender *Client, msg *Message) error {
 	var monitors []*Client
+	action := sender.name + "@" + msg.Action
 	s.clients.RLockFunc(func(m map[string]interface{}) {
-		action := sender.name + "@" + msg.Action
 		for _, v := range m {
 			c := v.(*Client)
 			if c.IsListenTo(action) {
@@ -108,8 +108,8 @@ func (s *Server) handleEmit(ctx context.Context, sender *Client, msg *Message) e
 			defer wg.Done()
 			_, err := client.Request(ctx, RequestData{
 				Mark:   CallMark,
-				Target: s.name,
-				Action: msg.Action,
+				Target: sender.name,
+				Action: action,
 				Data:   msg.Data,
 			})
 			if err != nil {
