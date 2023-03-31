@@ -237,7 +237,7 @@ func TestClientEmit(t *testing.T) {
 
 	counter := 0
 
-	server.GetClient("client1").SetListens([]string{"walk"})
+	server.GetClient("client1").SetListens([]string{"client3@walk"})
 	getClinet("client1").SetController(map[string]ControllerHandle{
 		"walk": func(ctx context.Context, data []byte) (interface{}, error) {
 			counter++
@@ -245,7 +245,7 @@ func TestClientEmit(t *testing.T) {
 		},
 	})
 
-	server.GetClient("client2").SetListens([]string{"walk"})
+	server.GetClient("client2").SetListens([]string{"client3@walk"})
 	getClinet("client2").SetController(map[string]ControllerHandle{
 		"walk": func(ctx context.Context, data []byte) (interface{}, error) {
 			counter++
@@ -272,7 +272,7 @@ func TestServerEmit(t *testing.T) {
 
 	counter := 0
 
-	server.GetClient("client1").SetListens([]string{"walk"})
+	server.GetClient("client1").SetListens([]string{"client3@walk"})
 	getClinet("client1").SetController(map[string]ControllerHandle{
 		"walk": func(ctx context.Context, data []byte) (interface{}, error) {
 			counter++
@@ -280,7 +280,7 @@ func TestServerEmit(t *testing.T) {
 		},
 	})
 
-	server.GetClient("client2").SetListens([]string{"walk"})
+	server.GetClient("client2").SetListens([]string{"client3@walk"})
 	getClinet("client2").SetController(map[string]ControllerHandle{
 		"walk": func(ctx context.Context, data []byte) (interface{}, error) {
 			counter++

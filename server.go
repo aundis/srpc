@@ -91,9 +91,10 @@ func (s *Server) handleCallContoller(ctx context.Context, sender *Client, msg *M
 func (s *Server) handleEmit(ctx context.Context, sender *Client, msg *Message) error {
 	var monitors []*Client
 	s.clients.RLockFunc(func(m map[string]interface{}) {
+		action := sender.name + "@" + msg.Action
 		for _, v := range m {
 			c := v.(*Client)
-			if c.IsListenTo(msg.Action) {
+			if c.IsListenTo(action) {
 				monitors = append(monitors, c)
 			}
 		}
