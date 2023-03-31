@@ -108,7 +108,7 @@ func (s *Server) handleEmit(ctx context.Context, sender *Client, msg *Message) e
 			defer wg.Done()
 			_, err := client.Request(ctx, RequestData{
 				Mark:   CallMark,
-				Target: sender.name,
+				Target: "main",
 				Action: action,
 				Data:   msg.Data,
 			})
